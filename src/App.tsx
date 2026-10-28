@@ -93,64 +93,109 @@ function HomePage() {
   const root = useRef<HTMLDivElement>(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeService, setActiveService] = useState<number | null>(0)
+  const closeMenu = () => {
+  setMenuOpen(false)
+}
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const intro = gsap.timeline({ defaults: { ease: 'power3.out' } })
+useEffect(() => {
+  const ctx = gsap.context(() => {
+    const isMobile = window.matchMedia('(max-width: 650px)').matches
+
+    if (isMobile) {
+      // Ensure the hero is visible on mobile Safari.
+      gsap.set(
+        '.hero-kicker, .hero-line, .hero-copy, .hero-actions, .hero-art',
+        {
+          clearProps: 'all',
+          opacity: 1,
+          visibility: 'visible',
+          y: 0,
+          yPercent: 0,
+          scale: 1,
+        },
+      )
+    } else {
+      // Keep the existing desktop hero animation.
+      const intro = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+      })
 
       intro
-        .from('.hero-kicker', { y: 18, opacity: 0, duration: 0.7 })
+        .from('.hero-kicker', {
+          y: 18,
+          opacity: 0,
+          duration: 0.7,
+        })
         .from(
           '.hero-line',
-          { yPercent: 110, opacity: 0, duration: 1, stagger: 0.13 },
+          {
+            yPercent: 110,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.13,
+          },
           '-=0.3',
         )
         .from(
           '.hero-copy, .hero-actions',
-          { y: 20, opacity: 0, duration: 0.7, stagger: 0.15 },
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.15,
+          },
           '-=0.45',
         )
-        .from('.hero-art', { scale: 0.94, opacity: 0, duration: 1 }, '-=0.65')
-
-      gsap.utils.toArray<HTMLElement>('.reveal').forEach((element) => {
-        gsap.from(element, {
-          y: 36,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 88%',
-            once: true,
+        .from(
+          '.hero-art',
+          {
+            scale: 0.94,
+            opacity: 0,
+            duration: 1,
           },
-        })
+          '-=0.65',
+        )
+    }
+
+    // Animate the sections as they enter the viewport.
+    gsap.utils.toArray<HTMLElement>('.reveal').forEach((element) => {
+      gsap.from(element, {
+        y: 36,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 88%',
+          once: true,
+        },
       })
+    })
 
-      gsap.utils.toArray<HTMLElement>('.service-row').forEach((element) => {
-        gsap.from(element, {
-          x: -20,
-          opacity: 0,
-          duration: 0.65,
-          scrollTrigger: {
-            trigger: element,
-            start: 'top 92%',
-            once: true,
-          },
-        })
+    gsap.utils.toArray<HTMLElement>('.service-row').forEach((element) => {
+      gsap.from(element, {
+        x: -20,
+        opacity: 0,
+        duration: 0.65,
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 92%',
+          once: true,
+        },
       })
+    })
 
-      gsap.to('.orbit-word', {
-        rotate: 360,
-        duration: 28,
-        repeat: -1,
-        ease: 'none',
-      })
-    }, root)
+    gsap.to('.orbit-word', {
+      rotate: 360,
+      duration: 28,
+      repeat: -1,
+      ease: 'none',
+    })
+  }, root)
 
-    return () => ctx.revert()
-  }, [])
+  return () => ctx.revert()
+}, [])
 
-  const closeMenu = () => setMenuOpen(false)
 
   return (
     <div ref={root} className="site-shell">
