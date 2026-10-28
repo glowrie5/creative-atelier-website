@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, Asterisk } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Asterisk } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const deliverables = [
@@ -173,43 +173,56 @@ export default function GemsByMimaCaseStudy() {
   </div>
 </section>
 
-      <section className="case-website gems-website">
-        <div className="case-section-label">
-          <span>03 / WHAT'S NEXT</span>
-          <Asterisk size={19} />
-        </div>
+      ```tsx
+<section className="case-website">
+  <div className="case-section-label">
+    <span>03 / THE DIGITAL EXPERIENCE</span>
+    <Asterisk size={19} />
+  </div>
 
-        <div className="case-website-grid">
-          <div>
-            <p className="case-overline">CURRENTLY IN PROGRESS</p>
-            <h2>
-              A digital home
-              <br />
-              for <em>Gems by Mima.</em>
-            </h2>
-          </div>
+  <div className="case-website-grid">
+    <div>
+      <p className="case-overline">DESIGNED & DEVELOPED</p>
+      <h2>
+        A digital home
+        <br />
+        for <em>Gems by Mima.</em>
+      </h2>
+    </div>
 
-          <div>
-            <p>
-              The website is the next part of the brand’s digital experience.
-              It is being developed to bring the products together in one
-              place and support a smoother customer shopping journey.
-            </p>
+    <div>
+      <p>
+        The Gems by Mima website brings the jewellery brand to life through
+        a luxury-inspired digital storefront. Customers can explore watches,
+        necklaces, bracelets, anklets, and earrings, then connect directly
+        through WhatsApp to place their orders.
+      </p>
 
-            <span className="case-status">
-              <span />
-              WEBSITE DEVELOPMENT IN PROGRESS
-            </span>
-          </div>
-        </div>
+      <a
+        className="case-button"
+        href="https://gems-by-mima.netlify.app/"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Explore the live website <ArrowUpRight size={17} />
+      </a>
+    </div>
+  </div>
 
-        <div className="gems-website-preview">
-          <span>GEMS BY MIMA</span>
-          <strong>Everyday treasures.</strong>
-          <em>A new digital experience is taking shape.</em>
-          <span className="gems-preview-status">COMING TO LIFE</span>
-        </div>
-      </section>
+  <a
+    className="case-website-preview"
+    href="https://gems-by-mima.netlify.app/"
+    target="_blank"
+    rel="noreferrer"
+  >
+    <div>
+      <span>GEMS BY MIMA</span>
+      <strong>Every detail tells a story.</strong>
+      <span>VISIT WEBSITE ↗</span>
+    </div>
+  </a>
+</section>
+```
 
       <section className="case-outcome">
         <span className="case-overline">THE CREATIVE DIRECTION</span>
